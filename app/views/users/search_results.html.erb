@@ -1,0 +1,17 @@
+<h1> My portfolio </h1>
+
+<h3> Search result </h3>
+<br>
+
+<div class="well results-block">
+    <strong>Symbol:</strong> <%= @stock_item.ticker %>
+    <strong>Name:</strong> <%= @stock_item.name %>
+    <strong>Price:</strong> <%= @stock_item.last_price %>
+</div>
+<div id="stock-lookup">
+    <div class="form-group row no-padding text-center col-md-12">
+        <div class="col-md-12">
+            <%= link_to "Return to search", my_portfolio_path, class: "btn btn-lg btn-success" %>
+        </div>
+    </div>
+</div>
