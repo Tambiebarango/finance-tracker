@@ -1,0 +1,13 @@
+<% if params[:action] == 'search' %>
+    <div class="results-block">
+        <%= bootstrap_flash %>
+    </div>
+<% end %>
+
+<% if @stock_item %>
+    <div class="well results-block">
+        <strong>Symbol:</strong> <%= @stock_item.ticker %>
+        <strong>Name:</strong> <%= @stock_item.name %>
+        <strong>Price:</strong> <%= @stock_item.last_price %>
+    </div>
+<% end %>
