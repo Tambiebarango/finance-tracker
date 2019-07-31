@@ -7,6 +7,7 @@
           <th scope="col">Symbol</th>
           <th scope="col">Name</th>
           <th scope="col">Latest Price</th>
+          <% if @user.id == current_user.id %><th scope="col">Actions </th><%end%>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,8 @@
             <td><%=stock_item.ticker%></td>
             <td><%=stock_item.name%></td>
             <td><%=stock_item.last_price%></td>
+            <% if @user.id == current_user.id %><td><%= link_to "Remove", user_stock_path(stock_item), 
+                              method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger" %></td><%end%>
           </tr>
         <% end %>
       </tbody>
