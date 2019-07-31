@@ -14,3 +14,40 @@
  *= require_tree .
  *= require_self
  */
+
+ .no-padding{
+     padding: 0 !important;
+ }
+
+ .left-padding{
+     padding-left: 15px !important;
+ }
+
+ .user-name{
+     padding-top: 15px;
+ }
+
+ .logout{
+     padding-left: 0;
+ }
+
+ .nav.ml-auto li{
+    .btn{
+        color: #fff !important;
+        margin-top: 5%;
+
+    }
+    .btn-danger:hover{
+        background-color: darken(#d9534f, 20%) !important;
+    }
+ }
+
+ .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
