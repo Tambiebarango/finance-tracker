@@ -5,9 +5,22 @@
 <% end %>
 
 <% if @stock_item %>
-    <div class="well results-block">
-        <strong>Symbol:</strong> <%= @stock_item.ticker %>
-        <strong>Name:</strong> <%= @stock_item.name %>
-        <strong>Price:</strong> <%= @stock_item.last_price %>
+    <div class="well flex results-block" >
+        <strong>Symbol:</strong> <%= @stock_item.ticker %> 
+        <strong> Name:</strong> <%= @stock_item.name %> 
+        <strong> Price:</strong> <%= @stock_item.last_price %> 
+        <% if current_user.can_add_stocks?(@stock_item.ticker) %>
+            <%= link_to "Add to stocks", user_stocks_path(user:current_user, ticker:@stock_item.ticker), method: :post, 
+                        class:"btn btn-sm btn-success", style:"justify-content-flex-end" %>
+        <% else %>
+        <span class="label label-default">
+            <% if current_user.stock_already_added?(@stock_item.ticker) %>
+                ALREADY ADDED
+            <% end %>
+            <% if !current_user.under_stock_limit? %>
+                YOU ALREADY TRACK 10 STOCKS
+            <%end %>
+                            
+        <% end %>
     </div>
 <% end %>

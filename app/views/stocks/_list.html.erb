@@ -1,0 +1,23 @@
+<% if current_user.stocks.count > 0 %>
+  <h3>Here are the stocks in your portfolio </h3>
+  <div class="well flex results-block" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Latest Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.stocks.each do |stock_item| %>
+          <tr>
+            <td><%=stock_item.ticker%></td>
+            <td><%=stock_item.name%></td>
+            <td><%=stock_item.last_price%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
