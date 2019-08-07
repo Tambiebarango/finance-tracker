@@ -34,11 +34,16 @@
  .nav.ml-auto li{
     .btn{
         color: #fff !important;
-        margin-top: 5%;
+        // ;
 
     }
     .btn-danger:hover{
         background-color: darken(#d9534f, 20%) !important;
+    }
+
+    .user-name{
+        font-size: 1em;
+        margin-top: 5%
     }
  }
 

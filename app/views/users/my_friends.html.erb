@@ -1,0 +1,45 @@
+<div><h2><%= current_user.first_name%>'s friends </h2></div>
+<div><h3>Search for Friends </h3></div>
+<br>
+<% if @friends.size == 0 %>
+  <h4> You don't have any friends </h4>
+<% end %>
+
+<div id="friend-lookup">
+  <%= render "friends/lookup" %>
+</div>
+
+<div class="row no-padding col-md-9" style="margin-left: 6px;" id="results">
+   
+        <%= render "friends/result" %>
+  
+</div>
+
+<% if @friends.size > 0 %>
+    <h2><br>    </h2>
+    <div class="flex results-block">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @friends.each do |friend| %>
+            <tr>
+              <td><%=friend.full_name%></td>
+              <td><%=friend.email%></td>
+              <td><%= link_to "View profile", user_path(friend), class:"btn btn-xs btn-primary" %>
+              <%= link_to "Remove", friendship_path(friend), 
+                                method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-xs btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+<% end %>
+
+
+    

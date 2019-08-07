@@ -1,0 +1,37 @@
+<h3> <%=@user.first_name%>'s portfolio </h3>
+<br>
+
+<div class="row no-padding col-md-9" style="margin-left: 6px; width: " id="stock-list">
+    <div class="well flex results-block" >
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Latest Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @user_stocks.each do |stock_item| %>
+            <tr>
+                <td><%=stock_item.ticker%></td>
+                <td><%=stock_item.name%></td>
+                <td><%=stock_item.last_price%></td>
+                <% if current_user.stock_already_added?(stock_item.ticker) %>
+                    <td><span class="label label-default">
+                            ALREADY ADDED
+                        <% if !current_user.under_stock_limit? %>
+                            ALREADY ADDED AND YOU'RE AT THE STOCK LIMIT
+                        <% end %>
+                    </span></td>
+                <% else %>
+                    <td><%= link_to "Add to stocks", user_stocks_path(user:current_user, ticker:stock_item.ticker), method: :post, 
+                    class:"btn btn-xs btn-success", style:"justify-content-flex-end" %></td>
+                
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+    </div>
+</div>

@@ -4,25 +4,22 @@
     </div>
 <% end %>
 
-<% if @stock_item %>
+<% if @user_item %>
     <div class="well flex results-block" >
-        <strong>Symbol:</strong> <%= @stock_item.ticker %> 
-        <strong> Name:</strong> <%= @stock_item.name %> 
-        <strong> Price:</strong> <%= @stock_item.last_price %> 
+        <strong>Symbol:</strong> <%= @user_item.full_name %> 
+        <strong> Name:</strong> <%= @user_item.email %> 
+        <strong> Price:</strong> Actions
         <% if current_user.can_add_stocks?(@stock_item.ticker) %>
             <%= link_to "Add to stocks", user_stocks_path(user:current_user, ticker:@stock_item.ticker), method: :post, 
                         class:"btn btn-sm btn-success", style:"justify-content-flex-end" %>
         <% else %>
         <span class="label label-default">
-            <% if current_user.stock_already_added?(@stock_item.ticker) and current_user.under_stock_limit? %>
+            <% if current_user.stock_already_added?(@stock_item.ticker) %>
                 ALREADY ADDED
             <% end %>
-            <% if !current_user.under_stock_limit? and !current_user.stock_already_added?(@stock_item.ticker) %>
+            <% if !current_user.under_stock_limit? %>
                 YOU ALREADY TRACK 10 STOCKS
             <%end %>
-            <% if current_user.stock_already_added?(@stock_item.ticker) and !current_user.under_stock_limit? %>
-                ALREADY ADDED & STOCK LIMIT
-            <% end %>
                             
         <% end %>
     </div>
