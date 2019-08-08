@@ -17,21 +17,23 @@
                 <td><%=stock_item.ticker%></td>
                 <td><%=stock_item.name%></td>
                 <td><%=stock_item.last_price%></td>
-                <% if current_user.stock_already_added?(stock_item.ticker) %>
-                    <td><span class="label label-default">
-                            ALREADY ADDED
-                        <% if !current_user.under_stock_limit? %>
-                            ALREADY ADDED AND YOU'RE AT THE STOCK LIMIT
-                        <% end %>
-                    </span></td>
-                <% else %>
+                <% if current_user.stock_already_added?(stock_item.ticker) and current_user.under_stock_limit? %>
+                    <td><span class= "label label-default">ALREADY ADDED</span></td>
+                <% end %>
+                <% if !current_user.under_stock_limit? and !current_user.stock_already_added?(stock_item.ticker) %>
+                    <td><span class= "label label-default">YOU ALREADY TRACK 10 STOCKS</span></td>
+                <%end %>
+                <% if current_user.stock_already_added?(stock_item.ticker) and !current_user.under_stock_limit? %>
+                    <td><span class= "label label-default">ALREADY ADDED & STOCK LIMIT</span></td>
+                <% end %>
+                <% if current_user.under_stock_limit? and !current_user.stock_already_added?(stock_item.ticker) %>
                     <td><%= link_to "Add to stocks", user_stocks_path(user:current_user, ticker:stock_item.ticker), method: :post, 
                     class:"btn btn-xs btn-success", style:"justify-content-flex-end" %></td>
-                
-                <% end %>
+                <%end %>
             </tr>
             <% end %>
         </tbody>
         </table>
     </div>
+    <div align="center"><%= link_to "Back to friends", my_friends_path, class:"btn btn-primary" %></div>
 </div>
